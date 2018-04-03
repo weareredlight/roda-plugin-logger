@@ -1,0 +1,29 @@
+AllCops:
+  TargetRubyVersion: 2.5.1
+
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/BlockLength:
+  ExcludedMethods: ['resource', 'describe', 'context']
+
+Metrics/AbcSize:
+  Max: 25
+
+
+Layout/EmptyLines:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  NumberOfEmptyLines: 2
+
+
+Style/LambdaCall:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/NegatedIf:
+  Enabled: false

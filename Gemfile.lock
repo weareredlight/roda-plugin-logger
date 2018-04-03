@@ -1,0 +1,32 @@
+PATH
+  remote: .
+  specs:
+    roda-plugin-logger (0.1.0)
+      roda (~> 3.6.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.2)
+    method_source (0.9.0)
+    minitest (5.11.3)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    rack (2.0.4)
+    rake (12.3.1)
+    roda (3.6.0)
+      rack
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.16.1)
+  minitest (~> 5.11.3)
+  pry (~> 0.11.3)
+  rake (~> 12.3.1)
+  roda-plugin-logger!
+
+BUNDLED WITH
+   1.16.1
