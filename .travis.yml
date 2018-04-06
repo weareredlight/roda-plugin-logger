@@ -1,6 +1,7 @@
-sudo: false
 language: ruby
-before_install: gem install bundler -v 1.16.1
+sudo: false
+cache: bundler
+
 rvm:
   - 2.5
   - 2.4
@@ -9,3 +10,10 @@ rvm:
   - jruby-1.6
   - jruby-1.7
   - jruby-9
+
+before_install:
+  gem install bundler -v 1.16.1
+
+script:
+  bundle exec rubocop
+  bundle exec rake
