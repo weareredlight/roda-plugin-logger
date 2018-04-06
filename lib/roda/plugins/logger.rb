@@ -2,6 +2,7 @@
 
 require 'logger'
 require 'securerandom'
+require 'json'
 
 require 'roda'
 
