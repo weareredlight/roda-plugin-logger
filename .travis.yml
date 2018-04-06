@@ -15,5 +15,5 @@ before_install:
   gem install bundler -v 1.16.1
 
 script:
-  bundle exec rubocop
-  bundle exec rake
+  - bundle exec rubocop
+  - bundle exec rake
