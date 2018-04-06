@@ -56,10 +56,10 @@ describe Roda::RodaPlugins::Logger do
       req '/should_raise'
     rescue StandardError
       lines = File.readlines('log/test.log')
-      lines.count.must_equal 3
       lines[0].must_include 'Logfile created'
       lines[1].must_include 'INFO -- GET'
-      lines[2].must_include 'INFO -- Finished 500'
+      lines[2].must_include 'ERROR -- undefined'
+      lines.last.must_include 'INFO -- Finished 500'
     end
 
     it 'logs requests with other return statuses' do

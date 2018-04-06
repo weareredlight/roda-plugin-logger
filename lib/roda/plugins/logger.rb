@@ -41,7 +41,10 @@ class Roda
           logger = self.class.logger
           Thread.current[:request_id] = SecureRandom.uuid
           logger.info do
-            param_str = "\nParams: #{JSON.pretty_generate @_request.params}"
+            params = @_request.params
+            if params.any?
+              param_str = "\nParams: #{JSON.pretty_generate params}"
+            end
             "#{env['REQUEST_METHOD']} #{@_request.path}#{param_str}"
           end
           super
