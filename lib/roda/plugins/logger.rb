@@ -35,6 +35,11 @@ class Roda
       end
 
 
+      module ClassMethods
+        attr_accessor :logger
+      end
+
+
       module InstanceMethods
         def call(&block)
           start = Time.now
@@ -57,11 +62,6 @@ class Roda
             "Finished #{@_response.status || 500} #{time.to_i}ms"
           end
         end
-      end
-
-
-      module ClassMethods
-        attr_accessor :logger
       end
     end
 

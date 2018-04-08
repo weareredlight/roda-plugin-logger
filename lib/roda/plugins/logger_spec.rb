@@ -73,8 +73,8 @@ describe Roda::RodaPlugins::Logger do
       lines[2].must_include 'INFO -- Finished 123'
     end
 
-    it 'logs requests with other return statuses' do
-      req '/different'
+    it 'logs params' do
+      req '/different', query_string: 'param1=hips&param2=dontlie'
       lines = File.readlines('log/test.log')
       lines.count.must_equal 3
       lines[0].must_include 'Logfile created'
