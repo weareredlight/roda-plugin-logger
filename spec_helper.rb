@@ -6,31 +6,16 @@ require 'simplecov'
 SimpleCov.minimum_coverage 100
 SimpleCov.start
 require 'minitest/autorun'
+require 'rack/test'
 
 require 'roda/plugins/logger'
+
 
 ENV['RACK_ENV'] = 'test'
 
 
-def dummy_app(&block)
+def create_app(&block)
   c = Class.new(Roda)
   c.class_eval(&block)
   c
-end
-
-
-def req(path = '/', env = {})
-  if path.is_a?(Hash)
-    env = path
-  else
-    env['PATH_INFO'] = path.dup
-  end
-
-  env = {
-    'REQUEST_METHOD' => 'GET',
-    'PATH_INFO' => '/',
-    'SCRIPT_NAME' => '',
-    'rack.input' => ''
-  }.merge(env)
-  app.call(env)
 end
