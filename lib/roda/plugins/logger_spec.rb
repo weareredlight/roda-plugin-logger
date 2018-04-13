@@ -92,7 +92,7 @@ describe Roda::RodaPlugins::Logger do
   describe 'with proc' do
     before do
       create_app do
-        plugin :logger, proc: ->(logger) { logger.info "hips don't lie" }
+        plugin :logger, proc: proc { |logger| logger.info "hips don't lie" }
       end
     end
 

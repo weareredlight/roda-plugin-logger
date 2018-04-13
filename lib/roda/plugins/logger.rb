@@ -52,14 +52,14 @@ class Roda
             end
             "#{env['REQUEST_METHOD']} #{@_request.path}#{param_str}"
           end
-          super
+          status, _headers, _body = super
         rescue StandardError => e
           logger.error "#{e.message}\n#{e.backtrace.join("\n")}"
           raise
         ensure
           logger.info do
             time = (Time.now - start) * 1000
-            "Finished #{@_response.status || 500} #{time.to_i}ms"
+            "Finished #{status || 500} #{time.to_i}ms"
           end
         end
       end

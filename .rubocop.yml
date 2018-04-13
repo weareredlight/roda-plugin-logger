@@ -6,7 +6,7 @@ Metrics/MethodLength:
   Max: 20
 
 Metrics/BlockLength:
-  ExcludedMethods: ['resource', 'describe', 'context']
+  ExcludedMethods: ['describe']
 
 Metrics/AbcSize:
   Max: 25
