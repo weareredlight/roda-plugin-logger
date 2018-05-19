@@ -135,4 +135,21 @@ describe Roda::RodaPlugins::Logger do
       lines.last.must_be :include?, "hips don't lie"
     end
   end
+
+  describe 'with a numeric log level' do
+    let(:app) do
+      create_app do
+        plugin :logger, level: 2
+      end
+    end
+
+    it 'only logs requests of equal or higher level' do
+      app.logger.info "hips don't lie"
+      File.readlines('log/test.log').length.must_equal 1
+      app.logger.warn "hips don't lie"
+      lines = File.readlines('log/test.log')
+      lines.length.must_equal 2
+      lines.last.must_be :include?, "hips don't lie"
+    end
+  end
 end

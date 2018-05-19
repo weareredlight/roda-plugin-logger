@@ -30,7 +30,11 @@ class Roda
           "[#{datetime}] #{Thread.current['request_id']} "\
             "#{severity}#{progname && " #{progname}"} -- #{msg}\n"
         end
-        logger.level = ::Logger.const_get(level.upcase)
+        logger.level = if level.respond_to?(:upcase)
+                         ::Logger.const_get(level.upcase)
+                       else
+                         level
+                       end
         proc&.call logger
       end
 
