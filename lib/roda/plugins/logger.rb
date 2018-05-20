@@ -18,11 +18,12 @@ class Roda
         level: ENV['LOG_LEVEL'] ||
           (ENV['RACK_ENV'] == 'production' ? :info : :debug),
         rotate: ENV['RACK_ENV'] == 'production' ? 'monthly' : nil,
+        path: nil,
         logger_instance: nil,
         proc: nil
       )
         logger = app.logger = logger_instance || (
-          f = "log/#{ENV['RACK_ENV']}.log"
+          f = path || "log/#{ENV['RACK_ENV']}.log"
           development = ENV['RACK_ENV'] == 'development'
           development ? TeeLogger.create(f) : ::Logger.new(f, rotate)
         )
