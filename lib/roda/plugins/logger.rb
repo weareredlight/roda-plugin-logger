@@ -46,10 +46,11 @@ class Roda
 
 
       module InstanceMethods
-        def call(&block)
+        def _roda_handle_main_route
           start = Time.now
           logger = self.class.logger
           Thread.current[:request_id] = SecureRandom.uuid
+
           logger.info do
             params = @_request.params
             if params.any?
@@ -57,14 +58,15 @@ class Roda
             end
             "#{env['REQUEST_METHOD']} #{@_request.path}#{param_str}"
           end
-          status, _headers, _body = super
+
+          super
         rescue StandardError => e
           logger.error "#{e.message}\n#{e.backtrace.join("\n")}"
           raise
         ensure
           logger.info do
             time = (Time.now - start) * 1000
-            "Finished #{status || 500} #{time.to_i}ms"
+            "Finished #{@_response.status || 200} #{time.to_i}ms"
           end
         end
       end
