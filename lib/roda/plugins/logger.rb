@@ -20,7 +20,7 @@ class Roda
         rotate: ENV['RACK_ENV'] == 'production' ? 'monthly' : nil,
         path: nil,
         logger_instance: nil,
-        proc: nil
+        &block
       )
         logger = app.logger = logger_instance || (
           f = path || "log/#{ENV['RACK_ENV']}.log"
@@ -36,7 +36,7 @@ class Roda
                        else
                          level
                        end
-        proc&.call logger
+        block&.call logger
       end
 
 
